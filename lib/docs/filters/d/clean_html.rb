@@ -6,21 +6,19 @@ module Docs
         css('h2', 'h3', 'h4').each do |node|
           a = node.at_css('a')
           if a then
-            node['class'] = 'header'
             node['id'] = a['id']
             node.content = a.inner_text
           end
         end
 
         # Clean up code blocks
-        css('pre.notranslate').each do |node|
-          node['class'] = case node['class']
-          when 'bnf notranslate'
-            'language-bnf'
-          when 'd_code notranslate'
-            'language-d'
-          end
+        css('pre.d_code').each do |node|
+          node['class'] = 'language-d'
           node.inner_html = node.content.gsub(/\r\n/, '&#13;');
+        end
+        css('pre.bnf', 'pre.console').each do |node|
+          node['class'] = 'language-other'
+          node.inner_html = node.inner_html.gsub(/\r\n/, '&#13;');
         end
 
         # Clean up inline code
