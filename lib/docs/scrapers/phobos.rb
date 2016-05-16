@@ -1,13 +1,13 @@
 module Docs
-  class D < UrlScraper
-    self.name = 'D'
-    self.type = 'd'
-    self.base_url = 'http://dlang.org/spec/'
-    self.root_path = 'spec.html'
+  class Phobos < UrlScraper
+    self.name = 'Phobos'
+    self.type = 'phobos'
+    self.base_url = 'http://dlang.org/phobos/'
+    self.root_path = 'index.html'
 
     options[:container] = '#content'
 
-    html_filters.push 'd/clean_html', 'd/entries'
+    html_filters.push 'phobos/clean_html', 'phobos/entries'
 
     options[:attribution] = <<-HTML
       Boost Software License Version 1.0<br>

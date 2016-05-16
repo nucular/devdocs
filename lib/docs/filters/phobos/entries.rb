@@ -1,5 +1,5 @@
 module Docs
-  class D
+  class Phobos
     class EntriesFilter < Docs::EntriesFilter
       def get_name
         at_css('h1').inner_text
@@ -10,10 +10,9 @@ module Docs
       end
 
       def additional_entries
-        css('h2', 'h3', 'h4').reject do |node|
-          node['id'] == nil
-        end .map do |node|
-          [node.inner_text, node['id'], type]
+        css('.d_decl').map do |node|
+          symbol = node['id']
+          [name + symbol, symbol, type] if symbol
         end
       end
     end
