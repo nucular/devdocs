@@ -1,0 +1,24 @@
+._phobos {
+  @extend %simple;
+
+  .key {
+    font-weight: bold;
+    display: block;
+  }
+  div.summary, div.description, div.keyval
+  {
+    margin: 1.12em 0;
+  }
+
+  dl > dt {
+    @extend %block-heading;
+    @extend %note-blue;
+
+    font-weight: normal;
+    font-family: $monoFont;
+
+    .ddoc_psymbol {
+      font-weight: bold;
+    }
+  }
+}

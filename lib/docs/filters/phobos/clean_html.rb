@@ -2,6 +2,9 @@ module Docs
   class Phobos
     class CleanHtmlFilter < Filter
       def call
+        # Fix page header
+        at_css('h1').content = at_css('h1 > span').inner_text
+
         # Move header tags up
         css('h2', 'h3', 'h4').each do |node|
           child = node.at_css('a') or node.at_css('span')
@@ -35,6 +38,18 @@ module Docs
           node['id'] = symbol
           psymbol = node.at_css('ddoc_psymbol')
           psymbol['id'] = symbol[1..-1] if psymbol
+        end
+
+        # Fix table style
+        css('table').each do |node|
+          node.remove_attribute('border')
+          node.remove_attribute('cellpadding')
+          node.remove_attribute('cellspacing')
+        end
+
+        # Clean empty blocks
+        css('dd').each do |node|
+          node.content = "" if node.inner_text.strip == ''
         end
 
         # Remove 'Report Bug' and 'Improve this page'
