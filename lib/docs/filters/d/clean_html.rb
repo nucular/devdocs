@@ -16,6 +16,10 @@ module Docs
           node['class'] = 'language-d'
           node.inner_html = node.content.gsub(/\r\n/, '&#13;');
         end
+        css('pre.ccode').each do |node|
+          node['class'] = 'language-c'
+          node.inner_html = node.content.gsub(/\r\n/, '&#13;');
+        end
         css('pre.bnf', 'pre.console').each do |node|
           node['class'] = 'language-other'
           node.inner_html = node.inner_html.gsub(/\r\n/, '&#13;');
