@@ -16,21 +16,20 @@ module Docs
 
         # Clean up code blocks
         css('pre.d_code').each do |node|
-          node['class'] = 'language-d'
+          node['data-language'] = 'd'
           node.inner_html = node.content.gsub(/\r\n/, '&#13;');
         end
         css('pre.ccode').each do |node|
-          node['class'] = 'language-c'
+          node['data-language'] = 'c'
           node.inner_html = node.content.gsub(/\r\n/, '&#13;');
         end
         css('pre.bnf', 'pre.console').each do |node|
-          node['class'] = 'language-other'
           node.inner_html = node.inner_html.gsub(/\r\n/, '&#13;');
         end
 
         # Clean up inline code
         css('span.d_inlinecode').each do |node|
-          node['class'] = 'language-d'
+          node['data-language'] = 'd'
           node.name = 'code'
         end
 
